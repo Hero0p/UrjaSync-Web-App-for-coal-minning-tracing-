@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dash.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+        <h2><a href="#" id="dashboard-btn">Dashboard</a></h2>
+        <ul>
+            <li><a href="#" id="monthly-report-btn">Monthly Report</a></li>
+            <li><a href="#" id="data-upload-btn">Data Upload</a></li>
+            <li><a href="#" id="vehicle-maintenance-btn">Vehicle Maintenance & Data</a></li>
+            <li><a href="#" id="settings-btn">Settings</a></li>
+            <li><a href="{{ url_for('logout') }}"><button>Logout</button></a></li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div id="dashboard" class="content-section hidden">
+            <h1>Welcome to the Dashboard {{name}}</h1>
+            <p>This is your central hub for accessing and managing various aspects of your system. Use the sidebar to navigate to different sections, including monthly reports, data uploads, vehicle maintenance, settings, and more.</p>
+            <p>Get started by exploring the features available to you. Each section is designed to provide you with comprehensive tools and insights to enhance your experience.</p>
+        </div>
+        <div id="monthly-report" class="content-section hidden">
+            <h1>Monthly Report</h1>
+            <div class="graph">
+                <h3>Sales Overview</h3>
+                <canvas id="salesChart"></canvas>
+            </div>
+            <div class="graph">
+                <h3>Revenue Distribution</h3>
+                <canvas id="revenueChart"></canvas>
+            </div>
+            <div class="graph">
+                <h3>Customer Feedback</h3>
+                <canvas id="feedbackChart"></canvas>
+            </div>
+        </div>
+        <div id="data-upload" class="content-section hidden">
+            <h2>Data Upload</h2>
+            <h4>Upload the monthly data (CSV file) here:</h4>
+            <form id="upload-form" action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+                <label for="file-upload">Select File:</label>
+                <input type="file" id="file-upload" name="file-upload" required>
+                <br>
+                <label for="mine-name">Mine Name:</label>
+                <input type="text" id="mine-name" name="mine_name" required>
+                <br>
+                <label for="upload-date">Date:</label>
+                <input type="date" id="upload-date" name="upload-date" required>
+                <br>
+                <button type="submit">Upload</button>
+            </form>
+        </div>
+        <div id="vehicle-maintenance" class="content-section hidden">
+            <h2>Vehicle Maintenance & Data</h2>
+            <p>Here you can manage vehicle maintenance schedules and track vehicle data. Ensure all vehicles are regularly serviced and that their data is kept up to date.</p>
+            <p>Maintain detailed logs of maintenance activities, including dates, service types, and performed actions. Proper maintenance helps in prolonging the vehicle's lifespan and ensuring safety.</p>
+        </div>
+        <div id="settings" class="content-section hidden">
+            <h2>Settings</h2>
+            <p>Customize your dashboard settings here. You can change themes, update preferences, and configure account settings to match your needs and preferences.</p>
+            <p>Adjust display options, manage notifications, and set up your user profile. Ensuring that your settings are configured correctly can enhance your overall user experience.</p>
+        </div>
+        <div id="mine-graphs" class="content-section hidden">
+            <h2>Mine Data</h2>
+            <p>Graphs for the selected mine will be displayed here.</p>
+            <div class="graph">
+                <h3>Production Overview</h3>
+                <img id="production-chart" src="" alt="Production Chart">
+            </div>
+            <div class="graph">
+                <h3>Emissions Overview</h3>
+                <img id="emissions-chart" src="" alt="Emissions Chart">
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='dash.js') }}"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = {
+                'dashboard-btn': 'dashboard',
+                'monthly-report-btn': 'monthly-report',
+                'data-upload-btn': 'data-upload',
+                'vehicle-maintenance-btn': 'vehicle-maintenance',
+                'settings-btn': 'settings'
+            };
+
+            for (const [btnId, sectionId] of Object.entries(sections)) {
+                document.getElementById(btnId).addEventListener('click', function() {
+                    document.querySelectorAll('.content-section').forEach(el => el.classList.add('hidden'));
+                    document.getElementById(sectionId).classList.remove('hidden');
+                });
+            }
+
+            const urlParams = new URLSearchParams(window.location.search);
+            const mineName = urlParams.get('name');
+            if (mineName) {
+                document.querySelectorAll('.content-section').forEach(el => el.classList.add('hidden'));
+                const mineGraphs = document.getElementById('mine-graphs');
+                mineGraphs.classList.remove('hidden');
+                document.getElementById('production-chart').src = `{{ url_for('static', filename='') }}${mineName}_production.png`;
+                document.getElementById('emissions-chart').src = `{{ url_for('static', filename='') }}${mineName}_emissions.png`;
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    height: 100vh; /* Ensure body takes full viewport height */
+}
+.sidebar h2 a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    display: block;
+    padding: 1vh;
+    border-radius: 0.5vh;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar h2 a:hover {
+    background-color: #a8bcd5;
+}
+
+
+.sidebar {
+    width: 17vw; /* 25% of viewport width */
+    background-color: #cce4f7;
+    padding: 2vh; /* 2% of viewport height */
+    height: 100vh; /* Full viewport height */
+    position: absolute;
+    overflow-y: auto;
+    transition: all 0.3s ease;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 2vh; /* 2% of viewport height */
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    display: block;
+    padding: 1vh; /* 1% of viewport height */
+    border-radius: 0.5vh; /* Rounded corners */
+    transition: background-color 0.3s ease;
+}
+
+.sidebar ul li a:hover {
+    background-color: #a8bcd5;
+}
+
+button{
+    margin-top: 8px;
+    border-radius: 5px;
+    background-color:#cce4f7;
+    width: 80px;
+    height : 30px;
+}
+
+button:hover{
+    background-color: #a8bcd5;
+}
+input{
+    background-color: #fff;
+    margin-bottom: 8px;
+}
+.main-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 25vw; /* Matches sidebar width */
+    padding: 2vh; /* 2% of viewport height */
+    width: 75vw; /* 75% of viewport width */
+    height: 100vh; /* Full viewport height */
+    overflow-y: auto;
+    transition: margin-left 0.3s ease;
+}
+
+.hidden {
+    display: none;
+}
+
+.content-section {
+    animation: fadeIn 0.5s ease;
+}
+
+.graph {
+    margin-bottom: 3vh; /* 3% of viewport height */
+}
+
+canvas {
+    width: 100% !important;
+    height: 30vh !important; /* 30% of viewport height */
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

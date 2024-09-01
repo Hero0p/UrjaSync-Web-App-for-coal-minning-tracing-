@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mine Details</title>
+    <!-- Link to the CSS file using url_for -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='mine.css') }}">
+</head>
+<body>
+    <div class="container">
+        <div class="left-container">
+            <h1 id="mine-name"></h1>
+            <p id="mine-location"></p>
+            <button id="start-simulation-btn">Start Simulation</button>
+            <img id="mine-image" alt="Mine Image">
+        </div>
+        <div class="right-container">
+            <h2>Tree Count: <span id="tree-count">Loading...</span></h2>
+            <h2>Carbon Emission: <span id="carbon-emission">Loading...</span></h2>
+            <!-- Use canvas elements for graphs -->
+            <canvas class="graph" id="carbon-emission-graph"></canvas>
+            <canvas class="graph" id="tree-count-graph"></canvas>
+        </div>
+    </div>
+    <!-- Link to the JavaScript file using url_for -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="{{ url_for('static', filename='mine.js') }}"></script>
+</body>
+</html>

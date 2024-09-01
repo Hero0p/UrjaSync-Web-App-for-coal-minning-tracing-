@@ -1,0 +1,94 @@
+/* Import a stylish font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/* Basic reset and font settings */
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #a0cdf7; /* Snow white */
+}
+
+/* Container settings */
+.container {
+    display: flex;
+    gap: 2vw; /* Gap between the containers, using viewport width */
+    padding: 2vw; /* Padding around the container, using viewport width */
+    
+    flex-wrap: wrap; 
+    flex-direction: row;/* Allow flex items to wrap to the next line on smaller screens */
+    justify-content: center;
+    align-items: center;
+}
+
+/* Left and right containers */
+.left-container, .right-container {
+    flex: 1;
+    background-color: #FFFFFF; /* White background for divs */
+    padding: 2vw; /* Padding inside the container, using viewport width */
+    border-radius: 0.8vw; /* Rounded corners */
+    box-shadow: 0 0.8vw 1.6vw rgba(0, 0, 0, 0.1); /* Box shadow with viewport units */
+    /* Ensure containers have enough width */
+    min-height: 80vh;
+    max-height: 85vh;
+    overflow: auto;/* Limit the width to ensure gaps between containers */
+}
+#mine-image {
+    max-width: 40vw;
+   
+}
+
+/* Styling for headings */
+h1, h2 {
+    color: #003366; /* Blue color */
+    margin-bottom: 2vw;
+    font-weight: 700;
+}
+
+.left-container button{
+    background-color: #92bce3;
+    color: #FFFFFF; 
+    border-radius: 0.4vw;
+    height: 5vh;
+    width: 8vw; /* Blue color */
+    margin-bottom: 20px;
+}
+
+.left-container button:hover{
+    background-color: #003366;
+    color: #FFFFFF;
+    border-radius: 0.4vw;
+    height: 5vh;
+    width: 8vw; /* Blue color */
+}
+
+
+p {
+    font-size: 1.2em;
+    color: #333;
+    margin: 1vw 0; /* Margin using viewport units */
+}
+
+/* Graph styling */
+.graph {
+    width: 100%;
+    height: 40vh; /* Height of the graph using viewport height */
+    background-color: #e0e0e0;
+    border: 0.1vw solid #ccc; /* Border with viewport width units */
+    margin-top: 1vw;
+    border-radius: 0.4vw; /* Rounded corners for graph */
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        gap: 2vw; /* Maintain gap in vertical layout */
+    }
+    .left-container, .right-container {
+        max-width: 100%; /* Full width in column layout */
+        margin-bottom: 2vw; /* Space between containers in column layout */
+    }
+    .right-container {
+        margin-bottom: 0; /* Remove margin on the last container */
+    }
+}

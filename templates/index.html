@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrjaSync</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <h2 class="logo"><a href="#"><img src="{{ url_for('static', filename='logo.png') }}" id="logo-img"></a></h2>
+            <div id="google_translate_element"></div> 
+            <ul class="links">
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('home') }}#about-us">About Us</a></li>
+                <li><a href="{{ url_for('home') }}#services">Services</a></li>
+                <li><a href="{{ url_for('home') }}#contact">Contact Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h4 id="news-tag">Quick news regarding coal mining.</h4>
+    <div class="marquee-container">
+        <div class="marquee">
+            <p>Embracing eco-friendly practices is essential for a sustainable future. By reducing waste, choosing renewable energy, and supporting green technologies, we can significantly lower our environmental impact. Every small action contributes to a healthier planet for future generations.</p>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="left-container">
+            <div class="left-up">
+                <h1>
+                    <a href="{{ url_for('signup') }}" class="button">Sign Up</a>
+                    <a href="{{ url_for('login') }}" class="button">Log In</a>
+
+                    <button>Help</button>
+                    <button onclick="window.open('https://coal.nic.in/en/central-sector-schemes#:~:text=Coal%20Conservation%20and%20Development%20Act,and%20development%20of%20transport%20infrastructure.', '_blank')">
+                        Scheme
+                    </button>     
+                </h1>
+            </div>
+            <div class="left-down">
+                <div class="left-down-left">
+                    <iframe src="https://www.google.com/maps/d/embed?mid=1CZOZCtgjAVHSF_WOMfJCWP-AJbkHz5M&ehbc=2E312F" width="640" height="480"></iframe>      
+                </div>
+                <div class="left-down-right">
+                    <h2>Select Mine :</h2>
+                    <div style="position: relative;">
+                        <input type="text" id="search" placeholder="Search for coal mines">
+                        <button id="searchButton">Search</button>
+                        <div id="suggestionBox"></div>
+                    </div>
+                    <ul id="itemList"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="right-container">
+            <div class="weather-widget">
+                <div class="location-search">
+                    <input type="text" id="location-input" placeholder="Enter location">
+                    <button onclick="getWeather()">🔍</button>
+                </div>
+                <div class="current-weather">
+                    <div>
+                        <div class="temperature" id="current-temp"></div>
+                        <div id="current-condition"></div>
+                        <div id="location"></div>
+                        <div id="last-updated"></div>
+                    </div>
+                    <div class="weather-icon" id="current-icon"></div>
+                </div>
+                <div class="hourly-forecast" id="hourly-forecast">
+                    <!-- Hourly forecast will be populated here -->
+                </div>
+                <div class="daily-forecast" id="daily-forecast">
+                    <!-- Daily forecast will be populated here -->
+                </div>
+                <div class="additional-info">
+                    <div>
+                        <div>Precipitation</div>
+                        <div id="precipitation"></div>
+                    </div>
+                    <div>
+                        <div>Wind</div>
+                        <div id="wind"></div>
+                    </div>
+                    <div>
+                        <div>Pressure</div>
+                        <div id="pressure"></div>
+                    </div>
+                    <div>
+                        <div>UV</div>
+                        <div id="uv"></div>
+                    </div>
+                </div>
+                <div class="pollution-level">
+                    <div id="pollution"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="about-container" id="about-us">
+        <h1>About Us</h1>
+        <p>
+            Welcome to UrjaSync, a cutting-edge tool designed to empower mine 
+            operators with the insights they need to drive 
+            sustainability in the mining industry. Our platform allows 
+            you to input data on various mining activities, such as 
+            digging, transporting coal, and operating equipment. By leveraging 
+            established emission factors, our tool accurately calculates the
+            carbon emissions associated with each activity.
+        </p>
+    </div>
+    
+    <div class="services-container" id="services">
+        <h1>Services</h1>
+        <p>
+            At UrjaSync, we offer a range of comprehensive services designed to support the coal mining industry in its journey toward sustainability:
+        </p>
+        <span id="services-list">
+            <h3>Emission Tracking and Reporting</h3>
+            <ul>
+                <li><strong>Real-Time Monitoring:</strong> Capture and analyze real-time data on carbon emissions from various mining activities.</li>
+                <li><strong>Detailed Reports:</strong> Generate detailed reports on daily, monthly, and annual emission levels to track progress and compliance.</li>
+            </ul>
+            
+            <h3>Environmental Impact Assessment</h3>
+            <ul>
+                <li><strong>Carbon Footprint Analysis:</strong> Evaluate the carbon footprint of each mine and assess the impact on local and global air quality.</li>
+                <li><strong>Future Projections:</strong> Use advanced analytics and machine learning to predict future environmental impacts and air quality trends.</li>
+            </ul>
+            
+            <h3>Carbon Neutrality Pathways</h3>
+            <ul>
+                <li><strong>Emission Reduction Strategies:</strong> Explore and simulate various strategies for reducing emissions, including the adoption of clean technologies and renewable energy sources.</li>
+                <li><strong>Afforestation and Carbon Offsetting:</strong> Calculate the amount of afforestation required to offset carbon emissions and provide recommendations for effective tree plantation.</li>
+            </ul>
+            
+            <h3>Data Visualization and Insights</h3>
+            <ul>
+                <li><strong>Interactive Dashboards:</strong> Access intuitive dashboards and visualizations to track emission trends, operational efficiency, and environmental impact.</li>
+                <li><strong>Custom Reports:</strong> Create customized reports to communicate findings and insights to stakeholders and decision-makers.</li>
+            </ul>
+            
+            <h3>Consultation and Support</h3>
+            <ul>
+                <li><strong>Expert Guidance:</strong> Receive expert advice on implementing sustainable practices and achieving carbon neutrality.</li>
+                <li><strong>Technical Support:</strong> Get ongoing technical support to ensure smooth operation and utilization of our platform's features.</li>
+            </ul>
+        </span>
+        <form id="contact" action="" method="post">
+            <h1>Contact Us</h1>
+            <h3>Feel free to contact us:</h3>
+            <fieldset>
+                <input placeholder="Your name" type="text" tabindex="1" required>
+            </fieldset>
+            <fieldset>
+                <input placeholder="Your Email Address" type="email" tabindex="2" required>
+            </fieldset>
+            <fieldset>
+                <input placeholder="Your Phone Number (optional)" type="tel" tabindex="3" required>
+            </fieldset>
+            <fieldset>
+                <textarea placeholder="Type your message here...." tabindex="4" required></textarea>
+            </fieldset>
+            <fieldset>
+                <button name="submit" type="submit" id="contact-submit" data-submit="...Sending">Submit</button>
+            </fieldset>
+        </form>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script type="text/javascript">
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement(
+                {pageLanguage: 'en'},
+                'google_translate_element'
+            );
+        }
+    </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</body>
+</html>
